@@ -1,39 +1,58 @@
 public class CurrencyConverter implements BaseCurrency {
-
-    private static double usd = 0.0;
-
-    @Override
-    public void setUsd() {
-
-    }
+    private double usd = 0.0;
 
     @Override
-    public double getUsd(double value) {
+    public double getUSD() {
         return usd;
     }
 
     @Override
-    public void euroToUSD() {
-        
+    public void setUSD(double value) {
+        usd = value;
     }
 
     @Override
-    public double usdToEuro(double value) {
-        return usd /USD_VALUE;
+    public void euroToUSD(double value) {
+        usd = value * 1.14;
     }
 
-    /*public void euroToUSD(double value) {
-        usd = value * USD_VALUE;*/
+    @Override
+    public double usdToEuro() {
+        return usd / 1.14;
+    }
 
-    /*public double usdToEuro() {
-        return usd / USD_VALUE;*/
 
+    @Override
+    public void gbpToUSD(double value) {
+
+    }
+
+    @Override
+    public double usdToGBP() {
+        return 0;
+    }
+
+
+    @Override
+    public void yuanToUSD(double value) {
+
+    }
+
+    @Override
+    public double usdToYuan() {
+        return 0;
+    }
 
     public static void main(String[] args) {
-        CurrencyConverter cv = new CurrencyConverter();
-        cv.euroToUSD();
-        System.out.println(usd);
-        cv.usdToEuro(10);
+        CurrencyConverter c = new CurrencyConverter();
+
+        c.euroToUSD(50);
+
+        System.out.println("The value in USD is: " + c.getUSD());
+
+        c.setUSD(1000);
+
+        System.out.println("The value in Euro is: " + c.usdToEuro());
 
     }
 }
