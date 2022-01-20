@@ -45,12 +45,13 @@ public class CurrencyConverter implements BaseCurrency {
 
     public static void main(String[] args) {
         CurrencyConverter c = new CurrencyConverter();
+
         c.euroToUSD(50);
         System.out.println("The value in USD is: " + c.getUSD());
         c.setUSD(1000);
         System.out.println("The value in Euro is: " + c.usdToEuro());
 
-        c.gbpToUSD(50);
+        /*c.gbpToUSD(50);
         System.out.println("The value in USD is: " + c.getUSD());
         c.setUSD(1000);
         System.out.println("The value in GBP is: " + c.usdToGBP());
@@ -58,7 +59,7 @@ public class CurrencyConverter implements BaseCurrency {
         c.yuanToUSD(50);
         System.out.println("The value in USD is: " + c.getUSD());
         c.setUSD(1000);
-        System.out.println("The value in Yuan is: " + c.usdToYuan());
+        System.out.println("The value in Yuan is: " + c.usdToYuan());*/
     }
 }
 
