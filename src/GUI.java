@@ -8,7 +8,6 @@ import java.awt.event.WindowListener;
 public class GUI extends JFrame implements ActionListener, WindowListener {
 
     CurrencyConverter c = new CurrencyConverter();
-
     double input = 0.0;
 
     // here all the button, labels, and textfields are created
@@ -17,6 +16,9 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
     private JTextField euroField = new JTextField(10), usdField = new JTextField(10), gbpField = new JTextField(10), yuanField = new JTextField(10);
     private JButton clearBTN = new JButton("Clear");
 
+    /*
+        this constructor creates the panel
+     */
     public GUI() {
         this.setVisible(true);
         this.setResizable(false);
@@ -25,10 +27,14 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
         this.addWindowListener(this);
     }
 
-    public void init(){ // this method adds all the textfields on to the panel using the gridbaglayout
-        contentPane.setLayout(new GridBagLayout());
+    /*
+        this method intialises all the content that goes on to the panel,
+        it uses the gridbaglayout
+     */
+    public void init() {
+        contentPane.setLayout(new GridBagLayout()); // sets the layout for the panel to use
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.HORIZONTAL; // fills the grid box horizontally
         gbc.insets = new Insets(1,1,1,1);
 
         gbc.gridx = 1;
@@ -73,11 +79,13 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
     }
 
 
-
     public static void main(String[] args) {
         new GUI().init();
     }
 
+    /*
+        if there is an action this method is called
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == euroField) {
