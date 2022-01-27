@@ -11,19 +11,18 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
 
     double input = 0.0;
 
+    // here all the button, labels, and textfields are created
     private Container contentPane = this.getContentPane();
     private JLabel euroLabel = new JLabel("Euro:"), usdLabel = new JLabel("USD:"), gbpLabel = new JLabel("GBP:"), yuanLabel = new JLabel("Yuan");
     private JTextField euroField = new JTextField(10), usdField = new JTextField(10), gbpField = new JTextField(10), yuanField = new JTextField(10);
     private JButton clearBTN = new JButton("Clear");
 
-    public GUI(){
+    public GUI() {
         this.setVisible(true);
         this.setResizable(false);
         this.setSize(400,400);
         this.setTitle("Currency Converter");
         this.addWindowListener(this);
-
-        //this.setAlwaysOnTop(true);
     }
 
     public void init(){ // this method adds all the textfields on to the panel using the gridbaglayout
@@ -60,10 +59,17 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
         gbc.gridy = 4;
         contentPane.add(yuanField, gbc);
 
+        gbc.gridx = 2;
+        gbc.gridy = 5;
+        contentPane.add(clearBTN, gbc);
+
+
+        // action listeners listen to see if any action is performed
         euroField.addActionListener(this);
         usdField.addActionListener(this);
         gbpField.addActionListener(this);
         yuanField.addActionListener(this);
+        clearBTN.addActionListener(this);
     }
 
 
@@ -74,17 +80,18 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == euroField){
+        if(e.getSource() == euroField) {
             input = Double.parseDouble(euroField.getText()); // parses the string value from the textfield into a double value
             //euro to usd
-            c.euroToUSD(input);
+            c.euroToUSD(input); // converts the input value to usd, which can then be converted to any currency
             usdField.setText(String.format("%.2f", c.getUSD())); // string.format sets the output to 2 decimal places
             //euro to gbp
             gbpField.setText(String.format("%.2f", c.usdToGBP()));
             // euro to yuan
             yuanField.setText(String.format("%.2f", c.usdToYuan()));
 
-        } else if (e.getSource() == usdField){
+        }
+        else if (e.getSource() == usdField) {
             input = Double.parseDouble(usdField.getText());
             c.setUSD(input);
             //usd to euro
@@ -94,7 +101,8 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
             //usd to yuan
             yuanField.setText(String.format("%.2f", c.usdToYuan()));
 
-        } else if (e.getSource() == gbpField){
+        }
+        else if (e.getSource() == gbpField)  {
             input = Double.parseDouble(gbpField.getText());
             c.gbpToUSD(input);
             // gbp to euro
@@ -104,7 +112,8 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
             // gbp to yuan
             yuanField.setText(String.format("%.2f", c.usdToYuan()));
 
-        } else if(e.getSource() == yuanField){
+        }
+        else if(e.getSource() == yuanField) {
             input = Double.parseDouble(yuanField.getText());
             c.yuanToUSD(input);
             // yuan to euro
@@ -113,6 +122,14 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
             usdField.setText(String.format("%.2f", c.getUSD()));
             // yuan to gbp
             gbpField.setText(String.format("%.2f", c.usdToGBP()));
+        }
+
+        if(e.getSource() == clearBTN) { // if the clear button is pressed all the textfields are set to nothing
+            euroField.setText("");
+            usdField.setText("");
+            gbpField.setText("");
+            yuanField.setText("");
+            System.out.println("Clear Button Pressed");
         }
 
     }
